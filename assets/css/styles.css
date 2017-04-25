@@ -1,15 +1,18 @@
 body {
-  background-color: grey;
-  font-family: "HelveticaNeue-Light", "Helvetica Neue Light", "Helvetica Neue", Helvetica, Arial, "Lucida Grande", sans-serif; 
-  color: white;
-  height:100%;
-  text-align:center;
+	background-color: grey;
+	font-family: 'Helvetica Neue Light', 'Helvetica', sans-serif ;
+	color: white;
+	font-kerning: 10px;  
+	font 
+	color: white;
+	height:100%;
+	text-align:center;
 }
 
 .wrappper{
-  clear: both;
-  width:100%;
-  margin:0 auto;
+	clear: both;
+	width:100%;
+	margin:0 auto;
 }
 
 #alphabet {
@@ -18,26 +21,45 @@ body {
 	justify-content: center;
 	margin:15px auto;
 	padding:0;
-	max-width:450px;
+	max-width:550px;
 }
 
 #alphabet li {
-	float:left;
 	width:35px;
 	height:30px;
 	margin-left: 10px;
 	margin-bottom: 10px;
-	padding:8px 2px 0 2px;
+	padding:12px 4px 0 ;
 	list-style:none;
 	background: white;
 	color: grey;
 	cursor:pointer;
 	border-radius: 50%;
-	border: solid 1px $white;
+	border: solid 1px white;
 } 
 
 #alphabet li:hover {
 	background-color: grey;
 	border: solid 1px white;
 	color: white;
+}
+
+
+#holder {
+	display: flex;
+	justify-content: center;
+}
+
+#my-word {
+	display: flex;
+	flex-direction: row;
+	margin: 0;
+	padding: 0;
+}
+
+#my-word li {
+	list-style: none;
+	margin: 0;
+	padding: 0 10px;
+	font-size:1.6em;
 }

@@ -1,5 +1,4 @@
 
-// Show spaces equivelent to the length of word generated
 // Allow user to select a letter from alphabet
 // Check to see if that letter is in the array from the word we generated
 // Take the result and diplay it to the user OR deduct a life from user
@@ -13,13 +12,15 @@ window.onload = function() {
 		'i', 'j', 'k', 'l', 'm', 'n', 'o', 'p', 'q', 'r', 's',
 		't', 'u', 'v', 'w', 'x', 'y', 'z'];
 
+	guesses = [];
+
 	// Generate a random word and store it
 	word = words[Math.floor(Math.random() * words.length)];
 	console.log(word);
 
 	// // Show alphabet cloices on screen
 	var buttons = function () {
-		myButtons = document.getElementById('buttons');
+		myButtons = document.querySelector('#buttons');
 		letters = document.createElement('ul');
 
 		for (var i = 0; i < alphabet.length; i++) {
@@ -35,6 +36,24 @@ window.onload = function() {
 
 	buttons();
 
+	// Show spaces equivelent to the length of word generated
+	blanks = function () {
+		wordHolder = document.querySelector('#holder');
+		correct = document.createElement('ul');
+
+		for (var i = 0; i < word.length; i++) {
+			correct.id = 'my-word' ;
+			line = document.createElement('li');
+			line.id = 'line' ;
+			line.innerHTML = '_'
+
+			guesses.push(line);
+			wordHolder.appendChild(correct);
+			correct.appendChild(line);		
+		}
+	}
+
+blanks();
 
 
 }
