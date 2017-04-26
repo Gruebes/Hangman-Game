@@ -6,17 +6,11 @@
 
 window.onload = function() {
 
-	var words = ["blue", "red", "green", "yellow", "orange", "brown", "black", "purple"];
 
 	var alphabet = ['a', 'b', 'c', 'd', 'e', 'f', 'g', 'h',
 		'i', 'j', 'k', 'l', 'm', 'n', 'o', 'p', 'q', 'r', 's',
 		't', 'u', 'v', 'w', 'x', 'y', 'z'];
 
-	guesses = [];
-
-	// Generate a random word and store it
-	word = words[Math.floor(Math.random() * words.length)];
-	console.log(word);
 
 	// // Show alphabet cloices on screen
 	var buttons = function () {
@@ -24,17 +18,18 @@ window.onload = function() {
 		letters = document.createElement('ul');
 
 		for (var i = 0; i < alphabet.length; i++) {
-	      letters.id = 'alphabet';
-	      list = document.createElement('li');
-	      list.id = 'letter';
-	      list.innerHTML = alphabet[i];
+			letters.id = 'alphabet';
+			list = document.createElement('li');
+			list.id = 'letter';
+			list.innerHTML = alphabet[i];
+			lookUp();
+
 
 			myButtons.appendChild(letters);
 			letters.appendChild(list);
 		}
 	}
 
-	buttons();
 
 	// Show spaces equivelent to the length of word generated
 	blanks = function () {
@@ -43,17 +38,51 @@ window.onload = function() {
 
 		for (var i = 0; i < word.length; i++) {
 			correct.id = 'my-word' ;
-			line = document.createElement('li');
-			line.id = 'line' ;
-			line.innerHTML = '_'
+			geuss = document.createElement('li');
+			geuss.class = 'guess' ;
+			geuss.innerHTML = '_'
 
-			guesses.push(line);
+			guesses.push(geuss);
 			wordHolder.appendChild(correct);
-			correct.appendChild(line);		
+			correct.appendChild(geuss);		
 		}
 	}
 
-blanks();
+
+
+
+	// OnClick Check
+	lookUp = function () {
+		list.onclick = function () {
+			var guess = (this.innerHTML);
+
+			console.log(guess);
+
+			for(var i = 0; i < word.length; i++){
+				if(word[i] === guess) {
+					guesses[i].innerHTML = guess;
+				}
+
+			}
+		}
+	}
+
+
+	init = function () {
+
+		var words = ["blue", "red", "green", "yellow", "orange", "brown", "black", "purple"];
+
+		// Generate a random word and store it
+		word = words[Math.floor(Math.random() * words.length)];
+		console.log(word);
+
+		guesses = [];
+
+		blanks();
+		buttons();
+	}
+
+	init();
 
 
 }
