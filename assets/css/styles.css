@@ -63,3 +63,35 @@ body {
 	padding: 0 10px;
 	font-size:1.6em;
 }
+
+#hold, #mylives {
+	display: block;
+	clear: both;
+}
+
+#mylives{
+  font-size:1.6em;
+  text-align:center;
+  display:block;
+}
+
+button {
+  border-radius: 5px;
+  background-color: grey;
+  color: white;
+  border: solid 1px white;
+  text-decoration:none;
+  cursor:pointer;
+  font-size:1.2em;
+  padding:10px;
+  width:150px;
+  margin: 10px;
+  outline: none;
+}
+
+button:hover{
+
+      background-color: white;
+      border: solid 1px white;
+      color: grey;
+    }
