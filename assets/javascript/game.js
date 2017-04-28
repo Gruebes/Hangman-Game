@@ -20,24 +20,53 @@ window.onload = function() {
     var lives ;   // Lives
     var showLives = document.getElementById("mylives");
 
-    function InitializeGame() {
+    function initializeGame() {
 
 		// Generate a random word and store it
 		word = words[Math.floor(Math.random() * words.length)];
 		console.log(word);
-		InitializeButtons();
+		// console.log(Math.floor(Math.random() * words.length));
+		initializeButtons();
 
 		guesses = [];
 	    lives = 10;
 	    console.log(lives);
 	    correct = 0;
 
-		InitializeBlanks();
+		initializeBlanks();
 		comments();
 
+
+		$('.char').on('click', function() {
+				
+				var guess = $(this).text();
+
+				console.log('Guess: '+guess);
+
+				guesses.push(guess);
+
+
+				for(var i = 0; i < word.length; i++) {
+					if(word[i] === guess) {
+						$('.guess' + [i]).html(guess);
+						correct += 1;
+					}
+				}
+
+
+				var life = (word.indexOf(guess));
+				if (life === -1) {
+					lives -=1;
+					comments();
+				} else {
+						comments();
+				}
+
+				$(this).attr("id", "clicked");
+		});
 	}
 
-	InitializeGame();
+	initializeGame();
 
 	$('.char').on('click', function() {
 			
@@ -68,7 +97,7 @@ window.onload = function() {
 	});
 
 	// // Show alphabet cloices on screen
-	function InitializeButtons() {
+	function initializeButtons() {
 
 		$('#buttons').append($('<ul>').addClass('alphabet'));
 
@@ -80,7 +109,7 @@ window.onload = function() {
 	}
 
 	// Show spaces equivelent to the length of word generated
-	 function InitializeBlanks() {
+	 function initializeBlanks() {
 		$('#holder').append($('<ul>').addClass('my-word'));
     
 		for (var i = 0; i < word.length; i++) {
@@ -102,9 +131,11 @@ window.onload = function() {
 
 
 	// Reset
- 	document.getElementById('reset').onclick = function() {
-    $('ul').detach();
+ 	// document.getElementById('reset').onclick = function() {
+	$( "button" ).click(function() {
+    $('#holder').empty();
+    $('#buttons').empty();
 
-    InitializeGame();
-  }
+    initializeGame();
+  })
 }
