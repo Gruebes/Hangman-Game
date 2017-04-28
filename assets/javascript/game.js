@@ -11,7 +11,7 @@ window.onload = function() {
 		't', 'u', 'v', 'w', 'x', 'y', 'z'];
 
 	var words = ["blue", "red", "green", "yellow", "orange", "brown"
-		, "black", "purple", "white", "teal", "grey", "Maroon", "pink"
+		, "black", "purple", "white", "teal", "grey", "maroon", "pink"
 		, "coral"];
 
 	var word = '';
