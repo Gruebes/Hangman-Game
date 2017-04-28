@@ -15,7 +15,7 @@ body {
 	margin:0 auto;
 }
 
-#alphabet {
+.alphabet {
 	display: flex;
 	flex-flow: row wrap;
 	justify-content: center;
@@ -24,7 +24,7 @@ body {
 	max-width:550px;
 }
 
-#alphabet li {
+.alphabet li {
 	width:35px;
 	height:30px;
 	margin-left: 10px;
@@ -38,7 +38,7 @@ body {
 	border: solid 1px white;
 } 
 
-#alphabet li:hover {
+.alphabet li:hover {
 	background-color: grey;
 	border: solid 1px white;
 	color: white;
@@ -50,26 +50,21 @@ body {
 	justify-content: center;
 }
 
-#my-word {
+.my-word {
 	display: flex;
 	flex-direction: row;
 	margin: 0;
 	padding: 0;
 }
 
-#my-word li {
+.my-word li {
 	list-style: none;
 	margin: 0;
 	padding: 0 10px;
 	font-size:1.6em;
 }
 
-#hold, #mylives {
-	display: block;
-	clear: both;
-}
-
-#mylives{
+.mylives{
   font-size:1.6em;
   text-align:center;
   display:block;

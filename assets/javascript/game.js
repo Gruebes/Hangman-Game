@@ -10,85 +10,111 @@ window.onload = function() {
 		'i', 'j', 'k', 'l', 'm', 'n', 'o', 'p', 'q', 'r', 's',
 		't', 'u', 'v', 'w', 'x', 'y', 'z'];
 
-	// // Show alphabet cloices on screen
-	var buttons = function () {
-		// creates unordered list for letters
-		myButtons = document.querySelector('#buttons');
-		letters = document.createElement('ul');
+	var words = ["blue", "red", "green", "yellow", "orange", "brown", "black", "purple"];
+	var word = '';
+	var guess = '';
 
-		// creates list itesms of buttons and letters
-		for (var i = 0; i < alphabet.length; i++) {
-			letters.id = 'alphabet'; //letters.setAttribute('id', 'alphabet')
-			list = document.createElement('li');
-			list.id = 'letter'; //list.setAttribute('id', 'letter')
-			list.innerHTML = alphabet[i];
-			// checks guess against word[i].length
-			lookUp();
+    var lives ;   // Lives
+    var showLives = document.getElementById("mylives");
 
-
-			myButtons.appendChild(letters);
-			letters.appendChild(list);
-		}
-	}
-
-	// Show spaces equivelent to the length of word generated
-	blanks = function () {
-		wordHolder = document.querySelector('#holder');
-		correct = document.createElement('ul');
-
-		for (var i = 0; i < word.length; i++) {
-			correct.id = 'my-word' ; //correct.setAttribute('id', 'my-word')
-			geuss = document.createElement('li');
-			geuss.class = 'guess' ; //guess.setAttribute('class', 'guess')
-			geuss.innerHTML = '_'
-			// 
-			guesses.push(geuss);
-			wordHolder.appendChild(correct);
-			correct.appendChild(geuss);		
-		}
-	}
-
-	// OnClick Check
-	lookUp = function () {
-		list.onclick = function () {
-			var guess = (this.innerHTML);
-
-			console.log(guess);
-
-			for(var i = 0; i < word.length; i++){
-				if(word[i] === guess) {
-					guesses[i].innerHTML = guess;
-				}
-
-			}
-		}
-	}
-
-	init = function () {
-
-		var words = ["blue", "red", "green", "yellow", "orange", "brown", "black", "purple"];
+    function InitializeGame() {
 
 		// Generate a random word and store it
 		word = words[Math.floor(Math.random() * words.length)];
 		console.log(word);
+		InitializeButtons();
 
 		guesses = [];
+	    lives = 10;
+	    console.log(lives);
+	    correct = 0;
 
-		blanks();
-		buttons();
+		InitializeBlanks();
+		comments();
+
 	}
 
-	init();
+	InitializeGame();
 
-		// Reset
-  document.getElementById('reset').onclick = function() {
-    // correct.parentNode.removeChild(correct);
-    // letters.parentNode.removeChild(letters);
+	$('.char').on('click', function() {
+			
+			var guess = $(this).text();
 
-    $('#holder').remove('ul');
-    // $('#my-word').remove('div');
+			console.log('Guess: '+guess);
 
-    init();
+			guesses.push(guess);
+
+
+			for(var i = 0; i < word.length; i++) {
+				if(word[i] === guess) {
+					$('.guess' + [i]).html(guess);
+					correct += 1;
+
+
+					// console.log('correct: '+correct);
+				}
+			}
+
+
+			var life = (word.indexOf(guess));
+			if (life === -1) {
+				lives -=1;
+				comments();
+			} else {
+					comments();
+			}
+
+			console.log('life: '+life);
+			console.log('lives: '+lives);
+			console.log('correct: '+correct);
+			console.log('Guesses: '+guesses);
+			console.log('__________');
+	});
+
+	// // Show alphabet cloices on screen
+	function InitializeButtons() {
+
+		$('#buttons').append($('<ul>').addClass('alphabet'));
+
+		for(var i = 0; i < alphabet.length; i++) {
+			$('.alphabet').append(($('<li>').addClass('char')).append(alphabet[i]));
+
+			// lookUp();
+		}
+	}
+
+	// Show spaces equivelent to the length of word generated
+	 function InitializeBlanks() {
+		$('#holder').append($('<ul>').addClass('my-word'));
+    
+		for (var i = 0; i < word.length; i++) {
+			$('.my-word').append(($('<li>').addClass('guess' + [i])).append('_'));
+
+		}
+	}
+
+	// Show lives
+    function comments() {
+    showLives.innerHTML =  lives + " Lives Remaining ";
+    if (lives < 1) {
+      showLives.innerHTML = "Game Over";
+    }
+    if (correct >= word.length) {
+        showLives.innerHTML = "You Win!";
+      }
+  }
+
+
+	// Reset
+ 	document.getElementById('reset').onclick = function() {
+		// correct.parentNode.removeChild(correct);
+		// letters.parentNode.removeChild(letters);
+
+    // $('#holder').removeClass('my-word');
+    // $('#my-word').removeClass('div');
+
+    // .empty();
+
+    InitializeGame();
   }
 }
-// });
