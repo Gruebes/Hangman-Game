@@ -10,7 +10,10 @@ window.onload = function() {
 		'i', 'j', 'k', 'l', 'm', 'n', 'o', 'p', 'q', 'r', 's',
 		't', 'u', 'v', 'w', 'x', 'y', 'z'];
 
-	var words = ["blue", "red", "green", "yellow", "orange", "brown", "black", "purple"];
+	var words = ["blue", "red", "green", "yellow", "orange", "brown"
+		, "black", "purple", "white", "teal", "grey", "Maroon", "pink"
+		, "coral"];
+
 	var word = '';
 	var guess = '';
 
@@ -49,9 +52,6 @@ window.onload = function() {
 				if(word[i] === guess) {
 					$('.guess' + [i]).html(guess);
 					correct += 1;
-
-
-					// console.log('correct: '+correct);
 				}
 			}
 
@@ -64,11 +64,7 @@ window.onload = function() {
 					comments();
 			}
 
-			console.log('life: '+life);
-			console.log('lives: '+lives);
-			console.log('correct: '+correct);
-			console.log('Guesses: '+guesses);
-			console.log('__________');
+			$(this).attr("id", "clicked");
 	});
 
 	// // Show alphabet cloices on screen
@@ -95,7 +91,7 @@ window.onload = function() {
 
 	// Show lives
     function comments() {
-    showLives.innerHTML =  lives + " Lives Remaining ";
+    showLives.innerHTML = "You Have <strong>" + lives + "</strong> Lives Remaining ";
     if (lives < 1) {
       showLives.innerHTML = "Game Over";
     }
@@ -107,13 +103,7 @@ window.onload = function() {
 
 	// Reset
  	document.getElementById('reset').onclick = function() {
-		// correct.parentNode.removeChild(correct);
-		// letters.parentNode.removeChild(letters);
-
-    // $('#holder').removeClass('my-word');
-    // $('#my-word').removeClass('div');
-
-    // .empty();
+    $('ul').detach();
 
     InitializeGame();
   }

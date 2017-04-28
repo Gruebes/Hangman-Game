@@ -2,7 +2,6 @@ body {
 	background-color: grey;
 	font-family: 'Helvetica Neue Light', 'Helvetica', sans-serif ;
 	color: white;
-	font-kerning: 10px;  
 	font 
 	color: white;
 	height:100%;
@@ -38,7 +37,7 @@ body {
 	border: solid 1px white;
 } 
 
-.alphabet li:hover {
+#clicked, .alphabet li:hover {
 	background-color: grey;
 	border: solid 1px white;
 	color: white;
