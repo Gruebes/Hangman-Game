@@ -1,8 +1,3 @@
-// Allow user to select a letter from alphabet
-// Check to see if that letter is in the array from the word we generated
-// Take the result and diplay it to the user OR deduct a life from user
-// Show lives remaining
-
 window.onload = function() {
 
 	// letters to input in letters list
@@ -17,20 +12,17 @@ window.onload = function() {
 	var word = '';
 	var guess = '';
 
-    var lives ;   // Lives
-    var showLives = document.getElementById("mylives");
+    var lives ;
 
     function initializeGame() {
 
 		// Generate a random word and store it
 		word = words[Math.floor(Math.random() * words.length)];
 		console.log(word);
-		// console.log(Math.floor(Math.random() * words.length));
 		initializeButtons();
 
 		guesses = [];
 	    lives = 10;
-	    console.log(lives);
 	    correct = 0;
 
 		initializeBlanks();
@@ -40,11 +32,7 @@ window.onload = function() {
 		$('.char').on('click', function() {
 				
 				var guess = $(this).text();
-
-				console.log('Guess: '+guess);
-
 				guesses.push(guess);
-
 
 				for(var i = 0; i < word.length; i++) {
 					if(word[i] === guess) {
@@ -52,7 +40,6 @@ window.onload = function() {
 						correct += 1;
 					}
 				}
-
 
 				var life = (word.indexOf(guess));
 				if (life === -1) {
@@ -68,43 +55,12 @@ window.onload = function() {
 
 	initializeGame();
 
-	$('.char').on('click', function() {
-			
-			var guess = $(this).text();
-
-			console.log('Guess: '+guess);
-
-			guesses.push(guess);
-
-
-			for(var i = 0; i < word.length; i++) {
-				if(word[i] === guess) {
-					$('.guess' + [i]).html(guess);
-					correct += 1;
-				}
-			}
-
-
-			var life = (word.indexOf(guess));
-			if (life === -1) {
-				lives -=1;
-				comments();
-			} else {
-					comments();
-			}
-
-			$(this).attr("id", "clicked");
-	});
-
 	// // Show alphabet cloices on screen
 	function initializeButtons() {
-
 		$('#buttons').append($('<ul>').addClass('alphabet'));
 
 		for(var i = 0; i < alphabet.length; i++) {
 			$('.alphabet').append(($('<li>').addClass('char')).append(alphabet[i]));
-
-			// lookUp();
 		}
 	}
 
@@ -120,18 +76,17 @@ window.onload = function() {
 
 	// Show lives
     function comments() {
-    showLives.innerHTML = "You Have <strong>" + lives + "</strong> Lives Remaining ";
+    $('#mylives').html('You Have <strong>' + lives + '</strong> Lives Remaining ')
     if (lives < 1) {
-      showLives.innerHTML = "Game Over";
+      $('#mylives').html('Game Over');
     }
     if (correct >= word.length) {
-        showLives.innerHTML = "You Win!";
+        $('#mylives').html('You Win!');
       }
   }
 
 
 	// Reset
- 	// document.getElementById('reset').onclick = function() {
 	$( "button" ).click(function() {
     $('#holder').empty();
     $('#buttons').empty();
