@@ -103,7 +103,6 @@ window.onload = function() {
     if (correct >= word.length) {
         $('#mylives').addClass('strongtext').html('You Win!');
         typewriterBell.play();
-        gameOver.play();
 	}
 	}
 
