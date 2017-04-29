@@ -76,14 +76,19 @@ window.onload = function() {
 
 	// Show lives
     function comments() {
-    $('#mylives').html('You Have <strong>' + lives + '</strong> Lives Remaining ')
+    $('#mylives').html('You Have <strong>' + lives + '</strong> Lives Remaining ');
     if (lives < 1) {
-      $('#mylives').html('Game Over');
+		$('#mylives').html('Game Over');
+
+		for(var i = 0; i < word.length; i++) {
+			$('.guess' + [i]).html(word[i]);
+		}
     }
+
     if (correct >= word.length) {
-        $('#mylives').html('You Win!');
-      }
-  }
+        $('#mylives').addClass('strongtext').html('You Win!');
+	}
+	}
 
 
 	// Reset

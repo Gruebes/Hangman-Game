@@ -49,6 +49,10 @@ body {
 	justify-content: center;
 }
 
+.strongtext{
+	font-weight: bold;
+}
+
 .my-word {
 	display: flex;
 	flex-direction: row;
