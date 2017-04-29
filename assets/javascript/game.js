@@ -9,6 +9,18 @@ window.onload = function() {
 		, "black", "purple", "white", "teal", "grey", "maroon", "pink"
 		, "coral"];
 
+	var typewriterKey = document.createElement('audio');
+    typewriterKey.setAttribute('src', 'assets/audio/typewriter.wav');
+	
+	var typewriterBell = document.createElement('audio');
+    typewriterBell.setAttribute('src', 'assets/audio/typewriter-bell.wav');
+	
+	var typewriterReturn = document.createElement('audio');
+    typewriterReturn.setAttribute('src', 'assets/audio/typewriter-return.wav');
+	
+	var gameOver = document.createElement('audio');
+    gameOver.setAttribute('src', 'assets/audio/game-over.wav');
+
 	var word = '';
 	var guess = '';
 
@@ -33,6 +45,7 @@ window.onload = function() {
 				
 				var guess = $(this).text();
 				guesses.push(guess);
+				typewriterKey.play();
 
 				for(var i = 0; i < word.length; i++) {
 					if(word[i] === guess) {
@@ -49,7 +62,8 @@ window.onload = function() {
 						comments();
 				}
 
-				$(this).attr("id", "clicked");
+				$(this).attr("id", "clicked")  //.prop("disabled",true);
+
 		});
 	}
 
@@ -79,6 +93,7 @@ window.onload = function() {
     $('#mylives').html('You Have <strong>' + lives + '</strong> Lives Remaining ');
     if (lives < 1) {
 		$('#mylives').html('Game Over');
+		gameOver.play();
 
 		for(var i = 0; i < word.length; i++) {
 			$('.guess' + [i]).html(word[i]);
@@ -87,6 +102,8 @@ window.onload = function() {
 
     if (correct >= word.length) {
         $('#mylives').addClass('strongtext').html('You Win!');
+        typewriterBell.play();
+        gameOver.play();
 	}
 	}
 
@@ -95,6 +112,8 @@ window.onload = function() {
 	$( "button" ).click(function() {
     $('#holder').empty();
     $('#buttons').empty();
+
+    typewriterReturn.play();
 
     initializeGame();
   })

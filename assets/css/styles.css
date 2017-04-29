@@ -8,10 +8,9 @@ body {
 	text-align:center;
 }
 
-.wrappper{
-	clear: both;
-	width:100%;
-	margin:0 auto;
+h1 {
+	font-size: 3em;
+	font-weight: bold;
 }
 
 .alphabet {
@@ -24,8 +23,8 @@ body {
 }
 
 .alphabet li {
-	width:35px;
-	height:30px;
+	width: 45px;
+    height: 45px;
 	margin-left: 10px;
 	margin-bottom: 10px;
 	padding:12px 4px 0 ;
@@ -41,6 +40,11 @@ body {
 	background-color: grey;
 	border: solid 1px white;
 	color: white;
+}
+
+#clicked {
+	cursor: not-allowed;
+	pointer-events: none;
 }
 
 
@@ -67,7 +71,7 @@ body {
 	font-size:1.6em;
 }
 
-.mylives{
+#mylives{
   font-size:1.6em;
   text-align:center;
   display:block;
