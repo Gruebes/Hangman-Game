@@ -21,10 +21,16 @@ window.onload = function() {
 	var gameOver = document.createElement('audio');
     gameOver.setAttribute('src', 'assets/audio/game-over.wav');
 
+    var lives ;
 	var word = '';
 	var guess = '';
+	var wins = 0;
+	var losses = 0;
 
-    var lives ;
+	$('#scores').html('Wins: ' + wins + '  :  ' + ' Losses: ' + losses );
+
+
+    
 
     function initializeGame() {
 
@@ -62,7 +68,7 @@ window.onload = function() {
 						comments();
 				}
 
-				$(this).attr("id", "clicked")  //.prop("disabled",true);
+				$(this).addClass('disable').attr('id', 'clicked');  //.prop("disabled",true);
 
 		});
 	}
@@ -93,8 +99,11 @@ window.onload = function() {
     $('#mylives').html('You Have <strong>' + lives + '</strong> Lives Remaining ');
     if (lives < 1) {
 		$('#mylives').html('Game Over');
-		// .play('assets/audio/game-over.wav');
+		$('#buttons').addClass('disable');
+
 		gameOver.play();
+		losses += 1;
+		$('#scores').html('Wins: ' + wins + '  :  ' + ' Losses: ' + losses );
 
 		for(var i = 0; i < word.length; i++) {
 			$('.guess' + [i]).html(word[i]);
@@ -103,7 +112,11 @@ window.onload = function() {
 
     if (correct >= word.length) {
         $('#mylives').addClass('strongtext').html('You Win!');
+        $('#buttons').addClass('disable');
+
         typewriterBell.play();
+        wins += 1;
+        $('#scores').html('Wins: ' + wins + '  :  ' + ' Losses: ' + losses );
 	}
 	}
 
@@ -112,6 +125,8 @@ window.onload = function() {
 	$( "button" ).click(function() {
     $('#holder').empty();
     $('#buttons').empty();
+
+    $('#buttons').removeClass('disable');
 
     typewriterReturn.play();
 
