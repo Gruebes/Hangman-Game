@@ -93,6 +93,7 @@ window.onload = function() {
     $('#mylives').html('You Have <strong>' + lives + '</strong> Lives Remaining ');
     if (lives < 1) {
 		$('#mylives').html('Game Over');
+		// .play('assets/audio/game-over.wav');
 		gameOver.play();
 
 		for(var i = 0; i < word.length; i++) {
